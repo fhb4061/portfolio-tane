@@ -15,9 +15,9 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Membership Platform Frontend",
+  title: "Jonathan Lopeti | Senior Full-Stack Engineer",
   description:
-    "Scalable, reusable Next.js foundation for a consumer membership platform.",
+    "Portfolio of Jonathan Lopeti, a Senior Full-Stack Engineer specializing in full-stack web development and architecture.",
 };
 
 export default function RootLayout({
