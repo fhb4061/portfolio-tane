@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
+import type { LucideIcon } from "lucide-react";
+import { Award, BriefcaseBusiness, Contact, UserRound, Wrench } from "lucide-react";
 
+import type { PortfolioSectionId } from "@/app/portfolio-data";
 import { portfolioContent } from "@/app/portfolio-data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
@@ -12,26 +20,70 @@ export const metadata: Metadata = {
     "Portfolio of Jonathan Lopeti, a Senior Full-Stack Engineer and full-stack developer with 7+ years across banking and public-sector software.",
 };
 
+const navIconMap: Record<PortfolioSectionId, LucideIcon> = {
+  about: UserRound,
+  skills: Wrench,
+  experience: BriefcaseBusiness,
+  "certs-awards": Award,
+  contact: Contact,
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <div className="sticky top-0 z-10 border-b border-border/60 bg-background/90 backdrop-blur">
-        <nav aria-label="Section navigation" className="mx-auto w-full max-w-5xl overflow-x-auto px-5 sm:px-8">
-          <ul className="flex min-w-max items-center gap-2 py-3 text-sm">
-            {portfolioContent.navItems.map((item) => (
-              <li key={item.id}>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full border-border/70 bg-transparent text-muted-foreground shadow-none hover:bg-accent/30 hover:text-foreground"
-                >
-                  <a href={`#${item.id}`}>{item.label}</a>
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="mx-auto w-full max-w-5xl px-5 sm:px-8">
+          <div className="flex justify-center py-2 sm:hidden">
+            <NavigationMenu aria-label="Section navigation" viewport={false}>
+              <NavigationMenuList className="gap-2">
+                {portfolioContent.navItems.map((item) => {
+                  const Icon = navIconMap[item.id];
+
+                  return (
+                    <NavigationMenuItem key={item.id}>
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="icon-sm"
+                        className="rounded-full border-border/70 bg-transparent text-muted-foreground shadow-none hover:bg-accent/30 hover:text-foreground"
+                      >
+                        <a href={`#${item.id}`} aria-label={item.label}>
+                          <Icon className="size-4" />
+                        </a>
+                      </Button>
+                    </NavigationMenuItem>
+                  );
+                })}
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+
+          <div className="hidden justify-center py-3 sm:flex">
+            <NavigationMenu aria-label="Section navigation" viewport={false}>
+              <NavigationMenuList className="gap-2 text-sm">
+                {portfolioContent.navItems.map((item) => {
+                  const Icon = navIconMap[item.id];
+
+                  return (
+                    <NavigationMenuItem key={item.id}>
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full border-border/70 bg-transparent text-muted-foreground shadow-none hover:bg-accent/30 hover:text-foreground"
+                      >
+                        <a href={`#${item.id}`}>
+                          <Icon className="size-4" />
+                          {item.label}
+                        </a>
+                      </Button>
+                    </NavigationMenuItem>
+                  );
+                })}
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+        </div>
       </div>
 
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-14 px-5 py-14 sm:px-8 sm:py-20">
