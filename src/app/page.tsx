@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Jonathan Lopeti | Senior Full-Stack Engineer",
+  description:
+    "Portfolio of Jonathan Lopeti, a Senior Full-Stack Engineer and full-stack developer building reliable web software.",
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -49,8 +57,23 @@ export default function Home() {
             Recruiter-friendly contact methods:
           </p>
           <ul className="space-y-1 text-muted-foreground">
-            <li>Email: your-email@example.com</li>
-            <li>LinkedIn: linkedin.com/in/your-handle</li>
+            <li>
+              Email:{" "}
+              <a className="underline underline-offset-4 hover:text-foreground" href="mailto:jonathanlopeti@gmail.com">
+                jonathanlopeti@gmail.com
+              </a>
+            </li>
+            <li>
+              LinkedIn:{" "}
+              <a
+                className="underline underline-offset-4 hover:text-foreground"
+                href="https://www.linkedin.com/in/tane-lopeti"
+                rel="noreferrer"
+                target="_blank"
+              >
+                linkedin.com/in/tane-lopeti
+              </a>
+            </li>
           </ul>
         </section>
       </div>
