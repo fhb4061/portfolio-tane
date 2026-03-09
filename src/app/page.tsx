@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 
 import { portfolioContent } from "@/app/portfolio-data";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
   title: "Jonathan Lopeti | Senior Full-Stack Engineer",
@@ -16,12 +20,14 @@ export default function Home() {
           <ul className="flex min-w-max items-center gap-2 py-3 text-sm">
             {portfolioContent.navItems.map((item) => (
               <li key={item.id}>
-                <a
-                  className="rounded-full border border-border/70 px-3 py-1.5 text-muted-foreground transition hover:text-foreground"
-                  href={`#${item.id}`}
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="rounded-full border-border/70 bg-transparent text-muted-foreground shadow-none hover:bg-accent/30 hover:text-foreground"
                 >
-                  {item.label}
-                </a>
+                  <a href={`#${item.id}`}>{item.label}</a>
+                </Button>
               </li>
             ))}
           </ul>
@@ -35,7 +41,9 @@ export default function Home() {
           <p className="max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {portfolioContent.heroSummary}
           </p>
-          <p className="text-sm font-medium text-muted-foreground">Objective: {portfolioContent.objective}</p>
+          <Badge variant="outline" className="rounded-full px-3 py-1 text-xs text-muted-foreground">
+            Objective: {portfolioContent.objective}
+          </Badge>
         </section>
 
         <section id="about" className="space-y-3 scroll-mt-20">
@@ -45,12 +53,15 @@ export default function Home() {
 
         <section id="skills" className="space-y-6 scroll-mt-20">
           <h2 className="text-2xl font-semibold">Skills</h2>
-          <div className="divide-y divide-border/60 rounded-xl border border-border/70">
-            {portfolioContent.skills.map((group) => (
-              <article key={group.title} className="grid gap-2 p-4 sm:grid-cols-[170px_1fr] sm:items-start">
-                <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">{group.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">{group.items.join(", ")}</p>
-              </article>
+          <div className="overflow-hidden rounded-xl border border-border/70">
+            {portfolioContent.skills.map((group, index) => (
+              <div key={group.title}>
+                {index > 0 && <Separator className="bg-border/60" />}
+                <article className="grid gap-2 p-4 sm:grid-cols-[170px_1fr] sm:items-start">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">{group.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">{group.items.join(", ")}</p>
+                </article>
+              </div>
             ))}
           </div>
         </section>
@@ -59,16 +70,20 @@ export default function Home() {
           <h2 className="text-2xl font-semibold">Experience</h2>
           <div className="space-y-6">
             {portfolioContent.experiences.map((experience) => (
-              <article key={`${experience.company}-${experience.period}`} className="rounded-xl border border-border/70 bg-card/30 p-5">
-                <p className="text-sm uppercase tracking-wide text-muted-foreground">{experience.period}</p>
-                <h3 className="mt-1 text-xl font-semibold">{experience.role}</h3>
-                <p className="text-base text-muted-foreground">{experience.company}</p>
-                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                  {experience.bullets.map((bullet) => (
-                    <li key={bullet}>• {bullet}</li>
-                  ))}
-                </ul>
-              </article>
+              <Card key={`${experience.company}-${experience.period}`} className="gap-0 border-border/70 bg-card/30 py-0">
+                <CardHeader className="gap-1 px-5 py-5">
+                  <p className="text-sm uppercase tracking-wide text-muted-foreground">{experience.period}</p>
+                  <CardTitle className="text-xl">{experience.role}</CardTitle>
+                  <p className="text-base font-normal text-muted-foreground">{experience.company}</p>
+                </CardHeader>
+                <CardContent className="px-5 pb-5">
+                  <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                    {experience.bullets.map((bullet) => (
+                      <li key={bullet}>• {bullet}</li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </section>
@@ -76,21 +91,29 @@ export default function Home() {
         <section id="certs-awards" className="space-y-5 scroll-mt-20">
           <h2 className="text-2xl font-semibold">Certs & Awards</h2>
           <div className="grid gap-5 sm:grid-cols-2">
-            <article className="rounded-xl border border-border/70 bg-card/30 p-5">
-              <h3 className="mb-3 text-lg font-medium">Certifications</h3>
-              <ul className="space-y-1 text-muted-foreground">
-                {portfolioContent.certifications.map((certification) => (
-                  <li key={certification.name}>{certification.name}</li>
-                ))}
-              </ul>
-            </article>
-            <article className="rounded-xl border border-border/70 bg-card/30 p-5">
-              <h3 className="mb-3 text-lg font-medium">Education</h3>
-              <p className="font-medium">{portfolioContent.education.institution}</p>
-              <p className="text-sm text-muted-foreground">{portfolioContent.education.period}</p>
-              <p className="mt-2 text-muted-foreground">{portfolioContent.education.degree}</p>
-              <p className="text-sm text-muted-foreground">Major: {portfolioContent.education.major}</p>
-            </article>
+            <Card className="gap-3 border-border/70 bg-card/30 py-5">
+              <CardHeader className="px-5 pb-0">
+                <CardTitle className="text-lg">Certifications</CardTitle>
+              </CardHeader>
+              <CardContent className="px-5">
+                <ul className="space-y-1 text-muted-foreground">
+                  {portfolioContent.certifications.map((certification) => (
+                    <li key={certification.name}>{certification.name}</li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="gap-3 border-border/70 bg-card/30 py-5">
+              <CardHeader className="px-5 pb-0">
+                <CardTitle className="text-lg">Education</CardTitle>
+              </CardHeader>
+              <CardContent className="px-5">
+                <p className="font-medium">{portfolioContent.education.institution}</p>
+                <p className="text-sm text-muted-foreground">{portfolioContent.education.period}</p>
+                <p className="mt-2 text-muted-foreground">{portfolioContent.education.degree}</p>
+                <p className="text-sm text-muted-foreground">Major: {portfolioContent.education.major}</p>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
