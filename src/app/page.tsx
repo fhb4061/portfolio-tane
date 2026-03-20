@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import type { LucideIcon } from "lucide-react";
-import { Award, BriefcaseBusiness, House, Mail, UserRound, Wrench } from "lucide-react";
+import { Award, BriefcaseBusiness, House, Mail, MapPin, Phone, UserRound, Wrench } from "lucide-react";
 
 import type { PortfolioSectionId } from "@/app/portfolio-data";
 import { portfolioContent } from "@/app/portfolio-data";
-import { Badge } from "@/components/ui/badge";
+import { Badge, badgeVariants } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -13,6 +13,7 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Jonathan Lopeti | Senior Full-Stack Engineer",
@@ -79,30 +80,32 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mx-auto grid w-full max-w-6xl gap-14 px-5 py-14 sm:px-8 sm:py-20 lg:w-[90vw] lg:max-w-none lg:grid-cols-[minmax(300px,380px)_1fr] lg:gap-20 lg:px-10 lg:py-24">
-        <aside className="space-y-10 lg:sticky lg:top-24 lg:self-start">
-          <section id="hero" className="space-y-5 scroll-mt-20">
-            <p className="text-sm font-medium uppercase tracking-[0.18em] text-muted-foreground">{portfolioContent.name}</p>
-            <h1 className="text-balance text-3xl font-semibold leading-tight sm:text-5xl">{portfolioContent.headline}</h1>
-            <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">{portfolioContent.heroSummary}</p>
-            <Badge variant="outline" className="rounded-full px-3 py-1 text-xs text-muted-foreground">
-              Objective: {portfolioContent.objective}
+      <div className="mx-auto grid w-full max-w-6xl gap-14 px-5 py-14 sm:px-8 sm:py-20 lg:w-[90vw] lg:max-w-none lg:grid-cols-[minmax(300px,360px)_1fr] lg:gap-20 lg:px-10 lg:pt-6 lg:pb-24">
+        <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+          <section id="hero" className="space-y-4 scroll-mt-20">
+            <Badge variant="outline" className="rounded-full border-primary/25 bg-primary/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-primary">
+              Jonathan Lopeti
             </Badge>
+            <h1 className="text-balance text-3xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-[2.85rem] lg:leading-[1.05]">
+              {portfolioContent.headline}
+            </h1>
           </section>
 
-          <section id="contact" className="space-y-3 scroll-mt-20">
-            <h2 className="text-2xl font-semibold">Contact</h2>
-            <p className="text-base leading-relaxed text-muted-foreground">Recruiter-friendly contact methods:</p>
-            <ul className="space-y-1 text-muted-foreground">
-              <li>
-                Email:{" "}
+          <section id="contact" className="space-y-4 border-t border-border/60 pt-5 scroll-mt-20">
+            <h2 className="text-xl font-semibold text-foreground">Contact</h2>
+            <ul className="space-y-2.5 text-sm text-muted-foreground">
+              <li className="flex items-start gap-3">
+                <Mail className="mt-0.5 size-4 text-primary" />
                 <a className="underline underline-offset-4 hover:text-foreground" href={`mailto:${portfolioContent.contact.email}`}>
                   {portfolioContent.contact.email}
                 </a>
               </li>
-              <li>Phone: {portfolioContent.contact.phone}</li>
-              <li>
-                LinkedIn:{" "}
+              <li className="flex items-start gap-3">
+                <Phone className="mt-0.5 size-4 text-primary" />
+                <span>{portfolioContent.contact.phone}</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <UserRound className="mt-0.5 size-4 text-primary" />
                 <a
                   className="underline underline-offset-4 hover:text-foreground"
                   href={portfolioContent.contact.linkedinUrl}
@@ -112,20 +115,30 @@ export default function Home() {
                   {portfolioContent.contact.linkedinLabel}
                 </a>
               </li>
-              <li>Location: {portfolioContent.contact.location}</li>
+              <li className="flex items-start gap-3">
+                <MapPin className="mt-0.5 size-4 text-primary" />
+                <span>{portfolioContent.contact.location}</span>
+              </li>
             </ul>
           </section>
         </aside>
 
-        <div className="space-y-14 lg:space-y-16">
+        <div className="space-y-14 lg:space-y-[4.5rem] lg:pt-2">
           <section id="about" className="space-y-3 scroll-mt-20">
-            <h2 className="text-2xl font-semibold">About</h2>
-            <p className="max-w-4xl text-base leading-relaxed text-muted-foreground">{portfolioContent.about}</p>
+            <div className="space-y-4">
+              <span className={cn(badgeVariants({ variant: "outline" }), "rounded-full border-primary/20 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-primary")}>
+                About
+              </span>
+              <h2 className="max-w-3xl text-3xl font-semibold leading-tight sm:text-4xl">
+                Building reliable software with product empathy and engineering depth.
+              </h2>
+              <p className="max-w-4xl text-base leading-relaxed text-muted-foreground sm:text-lg">{portfolioContent.about}</p>
+            </div>
           </section>
 
           <section id="skills" className="space-y-6 scroll-mt-20">
             <h2 className="text-2xl font-semibold">Skills</h2>
-            <div className="overflow-hidden rounded-xl border border-border/70">
+            <div className="overflow-hidden rounded-[1.5rem] border border-border/70 bg-card/20">
               {portfolioContent.skills.map((group, index) => (
                 <div key={group.title}>
                   {index > 0 && <Separator className="bg-border/60" />}
@@ -142,7 +155,7 @@ export default function Home() {
             <h2 className="text-2xl font-semibold">Experience</h2>
             <div className="space-y-6">
               {portfolioContent.experiences.map((experience) => (
-                <Card key={`${experience.company}-${experience.period}`} className="gap-0 border-border/70 bg-card/30 py-0">
+                <Card key={`${experience.company}-${experience.period}`} className="gap-0 rounded-[1.5rem] border-border/70 bg-card/25 py-0 shadow-[0_10px_35px_rgba(0,0,0,0.14)]">
                   <CardHeader className="gap-1 px-5 py-5">
                     <p className="text-sm uppercase tracking-wide text-muted-foreground">{experience.period}</p>
                     <CardTitle className="text-xl">{experience.role}</CardTitle>
@@ -166,7 +179,7 @@ export default function Home() {
           <section id="certs-awards" className="space-y-5 scroll-mt-20">
             <h2 className="text-2xl font-semibold">Certs & Awards</h2>
             <div className="grid gap-5 sm:grid-cols-2">
-              <Card className="gap-3 border-border/70 bg-card/30 py-5">
+              <Card className="gap-3 rounded-[1.5rem] border-border/70 bg-card/25 py-5">
                 <CardHeader className="px-5 pb-0">
                   <CardTitle className="text-lg">Certifications</CardTitle>
                 </CardHeader>
@@ -178,7 +191,7 @@ export default function Home() {
                   </ul>
                 </CardContent>
               </Card>
-              <Card className="gap-3 border-border/70 bg-card/30 py-5">
+              <Card className="gap-3 rounded-[1.5rem] border-border/70 bg-card/25 py-5">
                 <CardHeader className="px-5 pb-0">
                   <CardTitle className="text-lg">Education</CardTitle>
                 </CardHeader>
