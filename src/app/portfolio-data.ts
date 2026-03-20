@@ -40,7 +40,6 @@ export type PortfolioContent = {
   name: string;
   headline: string;
   heroSummary: string;
-  objective: string;
   about: string;
   skills: SkillGroup[];
   experiences: ExperienceItem[];
@@ -55,9 +54,8 @@ export const portfolioContent: PortfolioContent = {
   headline: "Senior Full-Stack Engineer",
   heroSummary:
     "Full-stack developer with 7+ years delivering scalable, user-centric web applications across banking and public-sector domains.",
-  objective: "To create value and build a good team culture.",
   about:
-    "I specialize in React and Spring Boot with a strong focus on clean architecture, simplicity, performance, and both user and developer experience. I value creating safe, empowered teams where people can voice ideas and concerns. New Zealand citizen based in Melbourne, Australia.",
+    "Over the past 7+ years, I have delivered scalable, user-centric software across banking and public-sector domains. I specialize in React and Spring Boot with a strong focus on clean architecture, simplicity, performance, and both user and developer experience. I value creating safe, empowered teams where people can voice ideas and concerns.",
   skills: [
     {
       title: "Frontend",
