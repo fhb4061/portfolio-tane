@@ -1,0 +1,71 @@
+import { BriefcaseBusiness } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+type ExperienceItem = {
+    role: string;
+    company: string;
+    period: string;
+    bullets: string[];
+};
+
+// usually get this from api maybe but will leave it here for simplicity
+const experiences: ExperienceItem[] = [
+    {
+        role: "Senior Developer",
+        company: "New Zealand Police",
+        period: "Nov 2023 - Feb 2026",
+        bullets: [
+            "Led development of photo sharing feature used by officers and photographers; streamline case building procedures.",
+            "Delivered features improving visibility of critical operational data, including bail status, task assignment, and officer location context.",
+            "Migrated legacy frontends into an Nx-managed React (TypeScript) monorepo to improve maintainability and reduce duplication.",
+            "Designed and introduced Playwright based e2e automation architecture and CI pipeline stages for reliable regression coverage.",
+            "Improved CI/CD simplicity and build performance via Docker multi-stage builds with stage-level caching.",
+            "Upgraded React and Angular applications to patch vulnerabilities and align with newer framework standards.",
+        ],
+    },
+    {
+        role: "Developer",
+        company: "Bank of New Zealand",
+        period: "Feb 2019 - Nov 2023",
+        bullets: [
+            "Delivered daily used staff workflows including Visa card ordering, blocking, and unblocking across branch operations.",
+            "Pioneered BNZ's first micro-frontend (AngularJS), then modernized it to React (TypeScript), setting patterns for future initiatives.",
+            "Built frontend and microservice features end-to-end in a distributed microservices ecosystem.",
+            "Automated ServiceNow standard-change creation pre-deployment, increasing release cadence from once every two days to multiple releases daily.",
+            "Migrated Spring Boot APIs from Oracle JDK 8 to OpenJDK 11 to reduce technical debt and address vulnerabilities.",
+            "Implemented Dynatrace monitoring/logging and maintained Cypress e2e coverage and onboarding documentation.",
+        ],
+    },
+];
+
+export function Experience() {
+    return (
+        <section id="experience" className="space-y-6 scroll-mt-20">
+            <div className="flex items-center gap-3">
+                <BriefcaseBusiness className="portfolio-icon size-5" />
+                <h2 className="text-2xl font-semibold">Experience</h2>
+            </div>
+            <div className="space-y-6">
+                {experiences.map((experience) => (
+                    <Card key={`${experience.company}-${experience.period}`} className="portfolio-panel gap-0 rounded-[1.5rem] py-0">
+                        <CardHeader className="gap-1 px-5 py-5">
+                            <p className="font-mono text-sm uppercase tracking-wide text-muted-foreground">{experience.period}</p>
+                            <CardTitle className="text-xl">{experience.role}</CardTitle>
+                            <p className="text-base font-normal text-muted-foreground">{experience.company}</p>
+                        </CardHeader>
+                        <CardContent className="px-5 pb-5">
+                            <ul className="space-y-3">
+                                {experience.bullets.map((bullet) => (
+                                    <li key={bullet} className="relative pl-4">
+                                        <span className="portfolio-accent-bar absolute inset-y-0 left-0 w-1 rounded-full" />
+                                        <span className="relative text-sm leading-relaxed text-muted-foreground sm:text-base">{bullet}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+        </section>
+    )
+}

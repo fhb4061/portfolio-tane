@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Fraunces, Space_Grotesk } from "next/font/google";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { MainNaivgation } from "@/components/navigation/main-navigation";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -29,11 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${spaceGrotesk.variable} ${fraunces.variable} antialiased`}>
-        <TooltipProvider>
-          {children}
-          <Toaster richColors position="top-right" />
-          <SpeedInsights />
-        </TooltipProvider>
+        <MainNaivgation />
+        {children}
+        <SpeedInsights />
       </body>
     </html>
   );
