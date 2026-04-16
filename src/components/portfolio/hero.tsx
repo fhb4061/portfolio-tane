@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 type PortfolioHero = {
     name: string;
@@ -18,7 +19,7 @@ const portfolioHero: PortfolioHero = {
 export function Hero() {
     return (
         <section id="hero" className="space-y-4 scroll-mt-20">
-            <Badge variant="outline" className="portfolio-hero-badge">
+            <Badge variant="outline" className={cn("portfolio-hero-badge")}>
                 {portfolioHero.name}
             </Badge>
             <h1 className="text-balance text-3xl font-semibold leading-tight sm:text-5xl lg:text-[2.85rem] lg:leading-[1.05]">
