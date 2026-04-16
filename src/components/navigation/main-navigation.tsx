@@ -12,12 +12,11 @@ type PortfolioNavItem = {
 
 type NavSectionId = PortfolioSectionId | "hero";
 
-const navItems: PortfolioNavItem[] = [
+const desktopNavItems: PortfolioNavItem[] = [
     { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
     { id: "experience", label: "Experience" },
     { id: "certs-awards", label: "Certs" },
-    { id: "contact", label: "Contact" },
 ];
 
 const navIconMap: Record<NavSectionId, LucideIcon> = {
@@ -30,10 +29,8 @@ const navIconMap: Record<NavSectionId, LucideIcon> = {
 };
 
 export function MainNaivgation() {
-    const desktopNavItems = navItems.filter((item) => item.id !== "contact");
     const mobileNavItems: { id: NavSectionId; label: string }[] = [
         { id: "hero", label: "Hero" },
-        { id: "contact", label: "Contact" },
         ...desktopNavItems,
     ];
 
