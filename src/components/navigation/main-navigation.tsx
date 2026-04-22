@@ -42,7 +42,6 @@ export function MainNavigation() {
                 <NavigationMenuItem key={`${keyPrefix}-${item.id}`}>
                     <Button
                         asChild
-                        variant="outline"
                         size={showLabel ? "sm" : "icon-sm"}
                         className="portfolio-nav-button"
                     >

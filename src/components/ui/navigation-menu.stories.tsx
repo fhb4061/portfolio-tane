@@ -6,7 +6,6 @@ import { BriefcaseBusiness, LucideIcon, Mail, UserRound, Wrench } from "lucide-r
 const meta = {
     title: "Components/Navigation",
     component: NavigationMenu,
-    tags: ["autodocs"]
 } satisfies Meta<typeof NavigationMenu>;
 
 export default meta;
@@ -44,27 +43,40 @@ export const Basic: Story = {
             }
         ];
 
-        const renderNavItems = () => navItems.map((item) => {
+        const renderNavItems = (showLabel: boolean = true) => navItems.map((item) => {
             const Icon = item.icon;
 
             return (
                 <NavigationMenuItem key={item.id}>
                     <Button
-                        variant="outline"
+                        size={showLabel ? "sm" : "icon-sm"}
                     >
                         <Icon />
-                        {item.label}
+                        {showLabel ? item.label : null}
                     </Button>
                 </NavigationMenuItem>
             )
         });
 
         return (
-            <NavigationMenu>
-                <NavigationMenuList>
-                    {renderNavItems()}
-                </NavigationMenuList>
-            </NavigationMenu >
+            <div className="grid gap-5">
+                <div className="grid gap-2">
+                    <span>With labels</span>
+                    <NavigationMenu>
+                        <NavigationMenuList>
+                            {renderNavItems()}
+                        </NavigationMenuList>
+                    </NavigationMenu>
+                </div>
+                <div className="grid gap-2">
+                    <span>With icons</span>
+                    <NavigationMenu>
+                        <NavigationMenuList>
+                            {renderNavItems(false)}
+                        </NavigationMenuList>
+                    </NavigationMenu>
+                </div>
+            </div>
         )
     }
 }
