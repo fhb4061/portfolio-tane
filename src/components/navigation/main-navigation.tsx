@@ -43,7 +43,6 @@ export function MainNavigation() {
                     <Button
                         asChild
                         size={showLabel ? "sm" : "icon-sm"}
-                        className="portfolio-nav-button"
                     >
                         <a href={`#${item.id}`} aria-label={item.label} title={item.label}>
                             <Icon className="size-4" />
@@ -55,19 +54,17 @@ export function MainNavigation() {
         });
 
     return (
-        <div className="border-border/80 bg-background/80 backdrop-blur sticky top-0 z-10 border-b">
-            <div className="mx-auto w-full max-w-6xl px-5 sm:px-8 lg:w-[90vw] lg:max-w-none lg:px-10">
-                <div className="flex justify-center py-2 sm:hidden">
-                    <NavigationMenu aria-label="Section navigation" viewport={false}>
-                        <NavigationMenuList className="gap-2">{renderNavItems(mobileNavItems, false, "mobile")}</NavigationMenuList>
-                    </NavigationMenu>
-                </div>
+        <div className="backdrop-blur sticky top-0 z-10 flex justify-center items-center inset-6 border-b border-border">
+            <div className="flex justify-center py-2 sm:hidden">
+                <NavigationMenu aria-label="Section navigation" viewport={false}>
+                    <NavigationMenuList className="gap-2">{renderNavItems(mobileNavItems, false, "mobile")}</NavigationMenuList>
+                </NavigationMenu>
+            </div>
 
-                <div className="hidden justify-center py-3 sm:flex">
-                    <NavigationMenu aria-label="Section navigation" viewport={false}>
-                        <NavigationMenuList className="gap-2 text-sm">{renderNavItems(desktopNavItems, true, "desktop")}</NavigationMenuList>
-                    </NavigationMenu>
-                </div>
+            <div className="hidden justify-center py-3 sm:flex">
+                <NavigationMenu aria-label="Section navigation" viewport={false}>
+                    <NavigationMenuList className="gap-2 text-sm">{renderNavItems(desktopNavItems, true, "desktop")}</NavigationMenuList>
+                </NavigationMenu>
             </div>
         </div>
     )

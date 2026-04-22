@@ -45,6 +45,8 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  --animate-laser: laser 2s linear infinite;
 }
 
 :root {
@@ -105,9 +107,9 @@
 
   body {
     @apply bg-background text-foreground;
-    background-image:
+    /* background-image:
       radial-gradient(circle at top left, rgb(74 222 128 / 0.14), transparent 24%),
-      linear-gradient(180deg, #07110b 0%, #030605 100%);
+      linear-gradient(180deg, #07110b 0%, #030605 100%); */
   }
 }
 
@@ -122,6 +124,16 @@
   }
 
   .portfolio-accent-bar {
-    @apply bg-primary/75;
+    @apply bg-primary/50;
+  }
+}
+
+@keyframes laser {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
   }
 }
