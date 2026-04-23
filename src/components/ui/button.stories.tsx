@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Briefcase } from "lucide-react";
 
 const meta = {
-    title: "Components/Button",
+    title: "Components/UI/Button",
     component: Button,
     args: {
         children: "Button",

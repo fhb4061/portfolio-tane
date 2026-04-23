@@ -1,6 +1,7 @@
 import { Wrench } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Panel } from "@/components/ui/panel";
+import { Heading } from "@/components/ui/heading";
 
 type SkillGroup = {
     title: string;
@@ -47,12 +48,15 @@ export function Skills() {
         <section id="skills" className="space-y-6 scroll-mt-20">
             <div className="flex items-center gap-3">
                 <Wrench className="portfolio-icon size-5" />
-                <h2 className="text-2xl font-semibold">Skills</h2>
+                <Heading
+                    label="Skills"
+                    size={2}
+                />
             </div>
             <Panel>
                 {skills.map((group, index) => (
                     <div key={group.title} className="grid gap-2">
-                        {index > 0 && <Separator className="portfolio-divider" />}
+                        {index > 0 && <Separator />}
                         <article className="grid py-2 px-1 sm:grid-cols-[170px_1fr] sm:items-start">
                             <h3 className="text-sm font-semibold uppercase tracking-wide">{group.title}</h3>
                             <p className="text-sm leading-relaxed sm:text-base">{group.items.join(", ")}</p>
