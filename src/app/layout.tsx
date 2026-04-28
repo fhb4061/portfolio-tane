@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Fraunces, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { MainNavigation } from "@/components/navigation/main-navigation";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -31,7 +30,6 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${fraunces.variable} antialiased`}
     >
       <body>
-        <MainNavigation />
         {children}
         <SpeedInsights />
       </body>
